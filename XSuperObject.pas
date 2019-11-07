@@ -222,7 +222,7 @@ type
     constructor Create(JSON: String = '{}'; const CheckDate: Boolean = True); overload;
     constructor Create(JSON: T; const CheckDate: Boolean = True); overload;
     constructor CreateCasted(Value: IJSONAncestor; const CheckDate: Boolean = True);
-    constructor CreateWithEscape(JSON: String = '{}'; const CheckDate: Boolean = True);
+    constructor CreateWithEscape(const CheckDate: Boolean = True; JSON: String = '{}');
     destructor Destroy; override;
     property Null[V: Typ]: TMemberStatus read GetNull write SetNull;
     property S[V: Typ]: String read GetString write SetString;
@@ -843,7 +843,7 @@ begin
   FCheckDate := CheckDate;
 end;
 
-constructor TBaseJSON<T, Typ>.CreateWithEscape(JSON: String; const CheckDate: Boolean);
+constructor TBaseJSON<T, Typ>.CreateWithEscape(const CheckDate: Boolean; JSON: String);
 begin
   Create(LimitedStrToUTF16(JSON), CheckDate);
 end;
